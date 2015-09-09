@@ -127,8 +127,7 @@ var avocado_imgCtrl = (function(){
             // TODO:
             // Add debug handler
             // Try catch everything that is possible
-            // Add Jasmine testing suite
-            // handle less then smallest image sizes
+
         }
     }
 
