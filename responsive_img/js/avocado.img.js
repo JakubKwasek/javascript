@@ -7,7 +7,9 @@
 
 var avocado_imgSettings = {
     "class": "js-avocado-img",
-    "retinaPostfix": "_2x"
+    "retinaPostfix": "_2x",
+    "isImagesWidthSet": true,
+    "imagesStyleWidth": "100%"
 };
 
 var avocado_imgData = {
@@ -15,8 +17,9 @@ var avocado_imgData = {
     "imagesName": "",
     "imagesExt": "",
     "imagesFolder": "",
-    "browserWidth": 0,
-    "imageVariant": ""
+    "imageVariant": "",
+    "imageClass": "",
+    "browserWidth": 0
 };
 
 var avocado_imgCtrl = (function(){
@@ -33,13 +36,19 @@ var avocado_imgCtrl = (function(){
         }
 
         var imgElement = document.createElement("img"),
-            imgAtt = document.createAttribute("src");
-            imgAtt.value = avocado_imgData.imagesFolder
+            imgSrc = document.createAttribute("src");
+            imgSrc.value = avocado_imgData.imagesFolder
                          + avocado_imgData.imagesName
                          + "_" + breakPointToRender
                          + avocado_imgData.imageVariant
                          + avocado_imgData.imagesExt;
-            imgElement.setAttributeNode(imgAtt);
+            imgElement.setAttributeNode(imgSrc);
+            //console.log(avocado_imgData.imageClass);
+            imgElement.className = avocado_imgData.imageClass;
+        if(avocado_imgSettings.isImagesWidthSet){
+            imgElement.style.width = avocado_imgSettings.imagesStyleWidth;
+        }
+
         el.innerHTML = '';
         el.appendChild(imgElement);
     };
@@ -65,6 +74,11 @@ var avocado_imgCtrl = (function(){
         handleBreakPointsDataSorting();
     };
 
+    var getClassData = function(el){
+        var imageClass = el.getAttribute("data-class") || "";
+        avocado_imgData.imageClass = imageClass;
+    };
+
     var getBrowserWidth = function(){
         avocado_imgData.browserWidth = window.innerWidth;
     };
@@ -82,6 +96,7 @@ var avocado_imgCtrl = (function(){
             getImagesData(el[i]);
             getImagesExtData(el[i]);
             getImagesFolder(el[i]);
+            getClassData(el[i]);
             getBrowserWidth();
             handleMarkup(el[i]);
         }
@@ -113,6 +128,7 @@ var avocado_imgCtrl = (function(){
             // Add debug handler
             // Try catch everything that is possible
             // Add Jasmine testing suite
+            // handle less then smallest image sizes
         }
     }
 
