@@ -1,2 +1,1 @@
-# avocado
-Avocado front-end scripts
+# Javascript Repository
