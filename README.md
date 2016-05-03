@@ -1,1 +1,1 @@
-# Javascript Repository
+# Javascript frontend repository
