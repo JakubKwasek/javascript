@@ -1,1 +1,1 @@
-# Javascript frontend repository
+# Responsive images simple script
